@@ -37,20 +37,16 @@ class SQLQuery():
         
         cursor execute(f"INSERT INTO {name} ({cols}) VALUES ({values})")
 
-    def update_data(self, name=self.name, cursor=self.cursor, *args, *varbs):
-        cols = ""
-        values = ""
+    def update_data(self, name=self.name, cursor=self.cursor, col, *varbs):
+        cols = self.cols_and_data(*args, *varbs)[0]
+        values = self.cols_and_data(*args, *varbs)[1]
 
-        for arg in args:
-            cols += str(arg) + ","
+        cursor execute(f"UPDATE {name} SET {col} = ({values})")
 
-        for var in varbs:
-            values += str(var) + ","
+    def delete_data(self, name=self.name, cursor=self.cursor, col, condition):
+        cols = self.cols_and_data(col, *varbs)[0]
+        values = self.cols_and_data(col, *varbs)[1]
 
-
-
-
-    def delete_data():
-        pass
+        cursor execute(f"DELETE FROM {name} WHERE {col}='condition';")
 
 
