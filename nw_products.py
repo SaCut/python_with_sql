@@ -1,7 +1,7 @@
 import pyodcb
 
-class SQLQuery():
-    def __init__(self, server, database, password, table_name="saverio_table"):
+class Products():
+    def __init__(self, server, database, username, password, table_name="saverio_table"):
         self.dock = pyodbc.connect(
             'DRIVER={ODBC Driver 17 for SQL Server};SERVER='
             + server
@@ -16,7 +16,7 @@ class SQLQuery():
         
         self.cursor = self.dock.cursor()
 
-    def cols_and_data(self, *args, *varbs):
+    def _cols_and_data(self, *args, *varbs):
         cols = ""
         values = ""
 
@@ -32,21 +32,21 @@ class SQLQuery():
         cursor.execute(f"CREATE TABLE {name};")
 
     def insert_data(self, name=self.name, cursor=self.cursor, *args, *varbs):
-        cols = self.cols_and_data(*args, *varbs)[0]
-        values = self.cols_and_data(*args, *varbs)[1]
+        cols = self._cols_and_data(*args, *varbs)[0]
+        values = self._cols_and_data(*args, *varbs)[1]
         
-        cursor execute(f"INSERT INTO {name} ({cols}) VALUES ({values})")
+        cursor.execute(f"INSERT INTO {name} ({cols}) VALUES ({values})")
 
     def update_data(self, name=self.name, cursor=self.cursor, col, *varbs):
-        cols = self.cols_and_data(*args, *varbs)[0]
-        values = self.cols_and_data(*args, *varbs)[1]
+        cols = self._cols_and_data(*args, *varbs)[0]
+        values = self._cols_and_data(*args, *varbs)[1]
 
         cursor execute(f"UPDATE {name} SET {col} = ({values})")
 
     def delete_data(self, name=self.name, cursor=self.cursor, col, condition):
-        cols = self.cols_and_data(col, *varbs)[0]
-        values = self.cols_and_data(col, *varbs)[1]
+        cols = self._cols_and_data(col, *varbs)[0]
+        values = self._cols_and_data(col, *varbs)[1]
 
-        cursor execute(f"DELETE FROM {name} WHERE {col}='condition';")
+        cursor.execute(f"DELETE FROM {name} WHERE {col}='condition';")
 
 
