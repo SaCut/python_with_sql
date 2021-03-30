@@ -30,15 +30,15 @@ row = cursor.fetchone()
 
 # # each row of a column becomes an element of a list in the attribute (named after the column)
 # for row in prod_rows:
-# 	print(row.UnitPrice)
+#   print(row.UnitPrice)
 
 rows = cursor.execute("SELECT * FROM Products")
 
 while True:
-	row = rows.fetchone()
-	if row is None:
-		break
-	print(row.UnitPrice)
+    row = rows.fetchone()
+    if row is None:
+        break
+    print(row.UnitPrice)
 
 
 # close the database when you leave
