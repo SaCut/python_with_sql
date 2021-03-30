@@ -2,13 +2,13 @@
 import pyodbc
 
 # let's establish the connection using pyodbc
-server = "**.***.***.**"
+server = "************"
 
-database = "Northwind"
+database = "*********"
 
-username = "SA"
+username = "******"
 
-password = "************"
+password = "*******"
 
 docker_Northwind = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
 
