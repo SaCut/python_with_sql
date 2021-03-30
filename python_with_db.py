@@ -39,3 +39,7 @@ while True:
 	if row is None:
 		break
 	print(row.UnitPrice)
+
+
+# close the database when you leave
+docker_Northwind.close()
